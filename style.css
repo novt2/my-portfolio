@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url('mitsuri.jpg') center center/cover no-repeat;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+}
+.overlay {
+  background: rgba(35, 30, 60, 0.7);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #a18fff;
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+.welcome {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #a18fff;
+  margin-bottom: 10px;
+}
+.desc {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+.location {
+  font-size: 1rem;
+  color: #6ad3ff;
+  margin-bottom: 25px;
+}
+.socials {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+.socials a {
+  color: #fff;
+  font-size: 1.8rem;
+  transition: color 0.2s;
+}
+.socials a:hover {
+  color: #a18fff;
+}
+.audio-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.visitors {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  opacity: 0.7;
+  font-size: 1rem;
+}
+.profile-card {
+  background: rgba(30, 30, 50, 0.6);
+  border-radius: 18px;
+  padding: 20px 40px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8px);
+  text-align: center;
+}

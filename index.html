@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Anime Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="overlay">
+    <button class="audio-btn" onclick="toggleAudio()">
+      <i id="audio-icon" class="fa-solid fa-volume-up"></i>
+    </button>
+    <img src="pfp.png" alt="Profile" class="profile-pic">
+    <div class="welcome">WELCOME &lt;3</div>
+    <div class="desc">HERE'S ALL YOU NEED</div>
+    <div class="location"><i class="fa-solid fa-location-dot"></i> SAUDI ARABIA</div>
+    <div class="profile-card">
+      <img src="pfp.png" alt="Profile" class="profile-pic" style="width:50px; height:50px; border-radius:50%; margin-bottom:8px;">
+      <div style="font-weight:bold;">Nawfal <i class="fa-solid fa-circle-check" style="color:#6ad3ff;"></i></div>
+      <div style="font-size:0.9rem; color:#aaa;">last seen 10 hours ago</div>
+    </div>
+    <div class="socials">
+      <a href="https://instagram.com/yourusername" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://discord.com/users/yourid" target="_blank"><i class="fab fa-discord"></i></a>
+      <a href="https://steamcommunity.com/id/yourid" target="_blank"><i class="fab fa-steam"></i></a>
+      <a href="https://tiktok.com/@yourusername" target="_blank"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <div class="visitors"><i class="fa-solid fa-eye"></i> <span id="visits">0</span></div>
+  </div>
+  <audio id="bgmusic" src="song.mp3" loop></audio>
+<script>
+  // عداد الزوار يبدأ من الصفر ويزيد مع كل زيارة (محلياً)
+  let visits = localStorage.getItem('visits');
+  if (visits === null) visits = 0;
+  visits++;
+  document.getElementById('visits').textContent = visits;
+  localStorage.setItem('visits', visits);
+
+  // تشغيل/إيقاف الموسيقى مع تغيير الأيقونة
+  const audio = document.getElementById('bgmusic');
+  const audioIcon = document.getElementById('audio-icon');
+  function toggleAudio() {
+    if (audio.paused) {
+      audio.play();
+      audioIcon.classList.remove('fa-volume-up');
+      audioIcon.classList.add('fa-volume-mute');
+    } else {
+      audio.pause();
+      audioIcon.classList.remove('fa-volume-mute');
+      audioIcon.classList.add('fa-volume-up');
+    }
+  }
+
+  // جلب صورة أفاتار ديسكورد تلقائياً
+  const userId = '1222651197438034014';
+  fetch(`https://lanyard.cnrad.dev/api/${userId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (!data.success) {
+        console.error("لم يتم جلب بيانات ديسكورد. تأكد أن البوت موجود في سيرفرك.");
+        return;
+      }
+      const avatar = data.data.discord_user.avatar;
+      let avatarUrl;
+      if (avatar) {
+        avatarUrl = `https://cdn.discordapp.com/avatars/${userId}/${avatar}.png?size=256`;
+      } else {
+        avatarUrl = `https://cdn.discordapp.com/embed/avatars/0.png`;
+      }
+      document.querySelectorAll('.profile-pic').forEach(img => img.src = avatarUrl);
+    })
+    .catch((e) => {
+      console.error("حدث خطأ أثناء جلب صورة ديسكورد:", e);
+    });
+</script>
+</body>
+</html>
